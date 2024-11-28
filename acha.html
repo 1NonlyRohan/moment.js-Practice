@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>moment.js | Practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Container -->
+    <div class="container">
+        <!-- Content Container -->
+        <div class="content-container">
+            <h1>Find the day of your birthday.</h1>
+            <p style="font-size: 1.3rem;">Please enter your date of birth in the format 'DD/MM/YYYY'.</p> <br>
+            <form id="dobForm">
+                <input type="text" id="dobInput" placeholder="Enter your date of birth">
+                <button type="submit">Submit</button>
+            </form>
+            <br>
+            <div id="result" style="font-size: 1.2rem;"></div>
+        </div>
+    </div>
+
+    <!-- Moment.js file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+
+    <script>
+        document.getElementById('dobForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            var dobInput = document.getElementById('dobInput').value;
+
+            if (moment(dobInput, 'DD/MM/YYYY', true).isValid()) {
+                var dayName = moment(dobInput, 'DD/MM/YYYY', true).format('dddd');
+                document.getElementById('result').textContent = `You were born on a ${dayName}.`;
+            } else {
+                document.getElementById('result').textContent = 'Please enter a valid date in the format DD/MM/YYYY.';
+            }
+        });
+    </script>
+
+</body>
+
+</html>
